@@ -20,3 +20,7 @@ import "./main.css";
 //     return;
 //   }
 // }
+
+import { v4 } from 'uuid';
+const myUUID = v4();
+console.log(myUUID); // Outputs a new UUID

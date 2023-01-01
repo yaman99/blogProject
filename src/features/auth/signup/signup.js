@@ -1,4 +1,4 @@
-import './signup.css';
+import "./signup.css";
 
 import { AuthService } from "../../../shared/services/authService";
 import { NotificationService } from "../../../shared/services/NotificationService";
@@ -11,6 +11,10 @@ function signup() {
     password: "asd.123",
     passwordConfirmation: "asd.123",
   };
+  if (authService.checkIfEmailExist(model.email)) {
+    notification.error("Email In Use");
+    return;
+  }
   const isInserted = authService.register(model);
   if (isInserted) {
     notification.success("Account Created ! .. You can Sign In now");

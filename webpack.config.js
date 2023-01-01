@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const glob = require("glob");
 
+
 let plugins = [
   new HtmlWebpackPlugin({
     title: "index page",
@@ -89,13 +90,6 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx", ".css"],
     modules: ["node_modules"],
-    fallback: {
-      buffer: false,
-      crypto: false,
-      path: false,
-      util:false,
-      stream:false
-    },
   },
   // plugins: [
   //   new HtmlWebpackPlugin({
@@ -120,7 +114,7 @@ glob.sync("./src/features/**/*.html").forEach((file) => {
     new HtmlWebpackPlugin({
       template: file,
       filename: `./features/${componentName}.html`,
-      chunks: ["main", componentName],
+      chunks: ["main" , componentName],
     })
   );
 });
