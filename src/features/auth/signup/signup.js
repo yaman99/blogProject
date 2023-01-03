@@ -1,5 +1,6 @@
 import "./signup.css";
-
+import "../auth.css";
+import "../validation";
 import { AuthService } from "../../../shared/services/authService";
 import { NotificationService } from "../../../shared/services/NotificationService";
 //import validation
@@ -9,12 +10,16 @@ let notification = new NotificationService();
 
 function signup() {
   // const  vResuukt = call validateSignUpForm()
+  const validationResult=validateSignUpForm();
+  if(!validationResult){
+    return ;
+  }
 
   let model = {
-    fullName: "yaman",
-    email: "yaman@yaman.com",
-    password: "asd.123",
-    passwordConfirmation: "asd.123",
+    fullName:document.getElementById("fullName").value ,
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value,
+    passwordConfirmation:document.getElementById("password2").value,
   };
   
   if (authService.checkIfEmailExist(model.email)) {
