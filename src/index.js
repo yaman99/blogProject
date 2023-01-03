@@ -21,6 +21,6 @@ import "./main.css";
 //   }
 // }
 
-import { v4 } from 'uuid';
-const myUUID = v4();
-console.log(myUUID); // Outputs a new UUID
+// import { v4 } from 'uuid';
+// const myUUID = v4();
+// console.log(myUUID); // Outputs a new UUID

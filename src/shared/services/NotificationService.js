@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 
 
 export class NotificationService {
-  success(msg) {
+  async success(msg) {
     Swal.fire({
       title: "success!",
       text: msg,

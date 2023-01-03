@@ -1,34 +1,37 @@
 import "./signup.css";
 import "../auth.css";
-import "../validation";
+import { initSignUpPage } from "../validation.js";
 import { AuthService } from "../../../shared/services/authService";
 import { NotificationService } from "../../../shared/services/NotificationService";
+import {validateSignUpForm} from "../validation"
 //import validation
+initSignUpPage();
 
 let authService = new AuthService();
 let notification = new NotificationService();
 
-function signup() {
+async function  signup() {
   // const  vResuukt = call validateSignUpForm()
-  const validationResult=validateSignUpForm();
-  if(!validationResult){
-    return ;
+  const validationResult = validateSignUpForm();
+  console.log(validationResult);
+  if (!validationResult) {
+    return;
   }
 
   let model = {
-    fullName:document.getElementById("fullName").value ,
+    fullName: document.getElementById("fullName").value,
     email: document.getElementById("email").value,
     password: document.getElementById("password").value,
-    passwordConfirmation:document.getElementById("password2").value,
+    passwordConfirmation: document.getElementById("password2").value,
   };
-  
+
   if (authService.checkIfEmailExist(model.email)) {
     notification.error("Email In Use");
     return;
   }
   const isInserted = authService.register(model);
   if (isInserted) {
-    notification.success("Account Created ! .. You can Sign In now");
+    await notification.success("Account Created ! .. You can Sign In now");
     window.location.href = "signin.html";
   } else {
     notification.error("SomeThing Wrong");

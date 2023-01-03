@@ -1,4 +1,4 @@
-function validateSignUpForm() {
+export function validateSignUpForm() {
   const input = document.getElementById("email");
   const emailValue = input.value.trim();
   const emailValidationResult = validateEmailInput(input, emailValue);
@@ -33,7 +33,7 @@ function validateSignUpForm() {
   return false;
 }
 
-function validateSignInForm() {
+export function validateSignInForm() {
   const input = document.getElementById("email");
   const emailValue = input.value.trim();
   const emailValidationResult = validateEmailInput(input, emailValue);
@@ -119,7 +119,7 @@ function validateFullNameInput(fullNameInput, fullNameValue) {
   return state;
 }
 
-function initLogInPage() {
+export function initLogInPage() {
   document.getElementById("login_btn").addEventListener(
     "click",
     (e) => {
@@ -129,7 +129,7 @@ function initLogInPage() {
     true
   );
 }
-function initSignUpPage() {
+export function initSignUpPage() {
   document.getElementById("signup_btn").addEventListener(
     "click",
     (e) => {
