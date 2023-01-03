@@ -7,6 +7,29 @@
     <title>Document</title>
   </head>
   <body>
-    <button id="login_btn">login</button>
+    <div class="container">
+      <div class="header">
+        <h2 style="color: aliceblue;">Log in</h2>
+      </div>
+      <form id="form" class="form">
+        <div class="form-control">
+          <label for="username">Email Address</label>
+          <input type="text" placeholder="Email Address" id="email" />
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="username">Password</label>
+          <input type="password" placeholder="Password" id="password" />
+          <small>Error message</small>
+        </div>
+        <div>
+          <button id="login_btn" style="font-size: large;">Sign in</button>
+          <p>You don't have an account? <a href="./signup.html" style="font-weight: bold;">SignUp</a></p>
+        </div>
+      </form>
+    </div>
+    <script >
+      initLogInPage()
+    </script>
   </body>
 </html>

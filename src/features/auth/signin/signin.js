@@ -1,6 +1,7 @@
 import { AuthService } from "../../../shared/services/authService.js";
 import { NotificationService } from "../../../shared/services/NotificationService.js";
-
+import "../validation"
+import "../auth.css"
 // event listners
 document.getElementById("login_btn").addEventListener("click", login, true);
 
