@@ -8,11 +8,8 @@ export class AuthService {
 
   constructor() {
     this.#dbContext = new DbService("Auth");
-    console.log(this.#dbContext);
   }
   login(email, password) {
-    console.log(email, password);
-    console.log(this.#dbContext.getData());
     const user = this.#dbContext
       .getData()
       .find((x) => x.email === email && x.password === password);
