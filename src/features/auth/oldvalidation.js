@@ -1,54 +1,34 @@
 let emailErrors = [];
-let passwordErrors = [];
-let password2Errors = [];
-let fullNameErrors = [];
 export function validateSignUpForm() {
   const input = document.getElementById("email");
   const emailValue = input.value.trim();
+
   const emailValidationResult = validateEmailInput(emailValue);
   if (emailValidationResult) {
     setSuccessFor(input);
   } else {
-    emailErrors.forEach((error) => {
+    emailErrors.forEach(error => {
       setErrorFor(input, error);
     });
   }
-
   const password_input = document.getElementById("password");
   const passwordValue = password_input.value.trim();
-  const passwordValidationResult = validatePasswordInput(passwordValue);
-  if (passwordValidationResult) {
-    setSuccessFor(password_input);
-  } else {
-    passwordErrors.forEach((error) => {
-      setErrorFor(password_input, error);
-    });
-  }
+  const passwordValidationResult = validatePasswordInput(
+    password_input,
+    passwordValue
+  );
 
   const password2_input = document.getElementById("password2");
   const password2Value = password2_input.value.trim();
   const password2ValidationResult = validatePassword2Input(
+    password2_input,
     password2Value,
     passwordValue
   );
-  if (password2ValidationResult) {
-    setSuccessFor(password2_input);
-  } else {
-    password2Errors.forEach((error) => {
-      setErrorFor(password2_input, error);
-    });
-  }
 
   const username_input = document.getElementById("fullName");
   const usernameValue = username_input.value.trim();
-  const fullNameValidationResult = validateFullNameInput(usernameValue);
-  if (fullNameValidationResult) {
-    setSuccessFor(username_input);
-  } else {
-    fullNameErrors.forEach((error) => {
-      setErrorFor(username_input, error);
-    });
-  }
+  const fullNameValidationResult = validateFullNameInput(username_input, usernameValue);
 
   if (
     emailValidationResult &&
@@ -106,40 +86,45 @@ export function validateEmailInput(emailValue) {
     return true;
   }
 }
-export function validatePasswordInput(passwordValue) {
-  if (passwordValue === "") {
-    passwordErrors.push("Password cannot be blank");
-    return false; 
-  } else if (passwordValue.length < 8) {
-    passwordErrors.push("your Password should be more than 8 character");
-    return false; 
+function validatePasswordInput(input, value) {
+  let state = false;
+  if (value === "") {
+    setErrorFor(input, "Password cannot be blank");
+  } else if (value.length < 8) {
+    setErrorFor(input, "your Password should be more than 8 character");
   } else {
-    return true;
+    setSuccessFor(input);
+    state = true;
   }
+  return state;
 }
-export function validatePassword2Input(password1value, password2value) {
+function validatePassword2Input(
+  password2Input,
+  password2value,
+  password1value
+) {
+  let state = false;
   if (password2value === "") {
-    password2Errors.push("Password2 cannot be blank");
-    return false; 
+    setErrorFor(password2Input, "Password2 cannot be blank");
   } else if (password1value !== password2value) {
-    password2Errors.push("Passwords does not match");
-    return false; 
-  } else if (password2value < 8) { 
-    return false; 
-  }else {
-    return true;
-  }
-}
-export function validateFullNameInput(fullNameValue) {
-  if (fullNameValue === "") {
-    fullNameErrors.push("Username cannot be blank");
-    return false; 
-  } else if (fullNameValue.length < 5) {
-    fullNameErrors.push("Your full Name must be more than 5 character");
-    return false; 
+    setErrorFor(password2Input, "Passwords does not match");
   } else {
-    return true;
+    setSuccessFor(password2Input);
+    state = true;
   }
+  return state;
+}
+function validateFullNameInput(fullNameInput, fullNameValue) {
+  let state = false;
+  if (fullNameValue === "") {
+    setErrorFor(fullNameInput, "Username cannot be blank");
+  } else if (fullNameValue.length < 5) {
+    setErrorFor(fullNameInput, "Your full Name must be more than 5 character");
+  } else {
+    setSuccessFor(fullNameInput);
+    state = true;
+  }
+  return state;
 }
 
 export function initLogInPage() {

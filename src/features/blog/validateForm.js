@@ -1,6 +1,6 @@
 const formData = {};
 
-export default function validateForm(
+export default function validateForm (
   titleInput,
   contentInput,
   authorNameInput
@@ -37,8 +37,8 @@ export default function validateForm(
     return null;
   }
 }
-// todo change the  @param to values
-function isTitleValid(title) {
+
+export function isTitleValid(title) {
   if (title !== "" && title.trim().length >= 3) {
     formData["title"] = title;
     return true;
@@ -47,7 +47,7 @@ function isTitleValid(title) {
   }
 }
 
-function isContentValid(content) {
+export function isContentValid(content) {
   if (content !== "" && content.trim().length >= 15) {
     formData["content"] = content;
     return true;
@@ -56,7 +56,7 @@ function isContentValid(content) {
   }
 }
 
-function isAuthorValid(authorName) {
+export function isAuthorValid(authorName) {
   if (authorName !== "" && authorName.trim().length >= 5) {
     formData["authorName"] = authorName;
     return true;
@@ -64,6 +64,8 @@ function isAuthorValid(authorName) {
     return false;
   }
 }
+
+
 
 function showValid(node) {
   node.parentElement.querySelector(".invalid-feedback").style.display = "none";
