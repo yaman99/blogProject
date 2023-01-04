@@ -10,7 +10,7 @@ initSignUpPage();
 let authService = new AuthService();
 let notification = new NotificationService();
 
-async function  signup() {
+async function signup() {
   // const  vResuukt = call validateSignUpForm()
   const validationResult = validateSignUpForm();
   console.log(validationResult);

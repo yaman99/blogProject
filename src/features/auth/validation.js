@@ -7,7 +7,9 @@ export function validateSignUpForm() {
   if (emailValidationResult) {
     setSuccessFor(input);
   } else {
-    setErrorFor(input, emailErrors[0]);
+    emailErrors.forEach(error => {
+      setErrorFor(input, error);
+    });
   }
   const password_input = document.getElementById("password");
   const passwordValue = password_input.value.trim();
@@ -72,16 +74,17 @@ export function isEmail(email) {
     email
   );
 }
+
 export function validateEmailInput(emailValue) {
-  let state = false;
   if (emailValue === "") {
     emailErrors.push("Email cannot be blank");
+    return false;
   } else if (!isEmail(emailValue)) {
     emailErrors.push("Not a valid email");
+    return false;
   } else {
-    state = true;
+    return true;
   }
-  return state;
 }
 function validatePasswordInput(input, value) {
   let state = false;
