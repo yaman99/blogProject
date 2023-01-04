@@ -8,6 +8,8 @@ const contentInput = document.getElementById("content");
 const authorNameInput = document.getElementById("authorName");
 
 
+let blogService = new BlogService(); 
+
 form.addEventListener("submit", validate);
 
 
@@ -22,7 +24,7 @@ function validate(e) {
   if (formData != null) {
     // todo : add the blog with a addBlog service
 
-
+    blogService.addBlog(formData);
     window.location.assign("./list-blogs.html");
   }
   // form.classList.add('was-validated');

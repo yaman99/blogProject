@@ -1,3 +1,5 @@
+import { BlogService } from "../../shared/services/blogService";
+
 export default function createBlog(formData) {
     const blogs = document.querySelector(".blogs");
 
@@ -27,11 +29,11 @@ export default function createBlog(formData) {
     manageBlog.className = "row mt-4 d-flex flex-row-reverse";
 
     const editButton = document.createElement("a");
-    editButton.href = "./edit-blog.html";
+    editButton.href = `./edit-blog.html/${formData["id"]}`;
     editButton.className = "btn btn-success m-2 col-md-2";
     editButton.innerText = "Edit Blog";
 
-
+    
     const deleteButton = document.createElement("a");
     deleteButton.className = "btn btn-danger deleteBtn m-2 col-md-2";
     deleteButton.innerText = "Delete Blog";
@@ -56,7 +58,9 @@ export default function createBlog(formData) {
 }
 
 
-function deleteBlog(key) {
-    sessionStorage.removeItem(key);
+let blogService = new BlogService(); 
+
+function deleteBlog(id) {
+    blogService.deleteBlog(id);
     window.location.reload();
 }

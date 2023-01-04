@@ -3,7 +3,7 @@ const formData = {};
 export default function validateForm(
   titleInput,
   contentInput,
-  authorNameInput,
+  authorNameInput
 ) {
   const title = titleInput.value;
   const validTitle = isTitleValid(title);
