@@ -53,3 +53,8 @@ it("Shoud Return False if empty", () => {
 it("Shoud Return True if entered email is valid mail", () => {
     expect(validateEmailInput("valid@mail.com")).toBe(true);
 });
+
+it("testing email input in signin page", () => {
+    expect(validateEmailInput("valid@mail.com")).toBe(true);
+    expect(validateEmailInput("valid")).toBe(false);
+});

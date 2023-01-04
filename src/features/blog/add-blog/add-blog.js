@@ -25,7 +25,7 @@ function validate(e) {
     // todo : add the blog with a addBlog service
 
     blogService.addBlog(formData);
-    window.location.assign("./list-blogs.html");
+    window.location.assign("./blog-list.html");
   }
   // form.classList.add('was-validated');
   // todo : check form but it skips white spaces !

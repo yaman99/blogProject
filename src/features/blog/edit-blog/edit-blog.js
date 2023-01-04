@@ -34,7 +34,7 @@ function validate(e) {
     if (formData != null) {
         // todo : submit
         blogService.updateBlog(formData);
-        window.location.assign("./list-blogs.html");
+        window.location.assign("./blog-list.html");
     }
     // todo : check form but it skips white spaces !
 

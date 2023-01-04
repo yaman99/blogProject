@@ -64,19 +64,34 @@ export function validateSignUpForm() {
 export function validateSignInForm() {
   const input = document.getElementById("email");
   const emailValue = input.value.trim();
-  const emailValidationResult = validateEmailInput(input, emailValue);
+  const emailValidationResult = validateEmailInput(emailValue);
+  if (emailValidationResult) {
+    setSuccessFor(input);
+  } else {
+    emailErrors.forEach((error) => {
+      setErrorFor(input, error);
+    });
+  }
+
 
   const password_input = document.getElementById("password");
   const passwordValue = password_input.value.trim();
-  const passwordvalidationResult = validatePasswordInput(
-    password_input,
-    passwordValue
-  );
-  if (emailValidationResult && passwordvalidationResult) {
+  const passwordValidationResult = validatePasswordInput(passwordValue);
+  if (passwordValidationResult) {
+    setSuccessFor(password_input);
+  } else {
+    passwordErrors.forEach((error) => {
+      setErrorFor(password_input, error);
+    });
+  }
+  console.log(emailValidationResult , passwordValidationResult);
+  if (emailValidationResult && passwordValidationResult) {
     return true;
   }
   return false;
 }
+
+
 function setErrorFor(input, message) {
   const formControl = input.parentElement;
   const small = formControl.querySelector("small");
@@ -142,23 +157,23 @@ export function validateFullNameInput(fullNameValue) {
   }
 }
 
-export function initLogInPage() {
-  document.getElementById("login_btn").addEventListener(
-    "click",
-    (e) => {
-      e.preventDefault();
-      validateSignInForm();
-    },
-    true
-  );
-}
-export function initSignUpPage() {
-  document.getElementById("signup_btn").addEventListener(
-    "click",
-    (e) => {
-      e.preventDefault();
-      validateSignUpForm();
-    },
-    true
-  );
-}
+// export function initLogInPage() {
+//   document.getElementById("login_btn").addEventListener(
+//     "click",
+//     (e) => {
+//       e.preventDefault();
+//       validateSignInForm();
+//     },
+//     true
+//   );
+// }
+// export function initSignUpPage() {
+//   document.getElementById("signup_btn").addEventListener(
+//     "click",
+//     (e) => {
+//       e.preventDefault();
+//       validateSignUpForm();
+//     },
+//     true
+//   );
+// }

@@ -11,7 +11,7 @@ if (blogs.length == 0 ) {
     empty.innerText = "No Blogs yet, add some!";
     document.querySelector(".empty-list").appendChild(empty);
 } else { 
-    for (let i= 1; i < blogs.length; i++) { 
+    for (let i= 0; i < blogs.length; i++) { 
         let item = blogs[i];
         createBlog(item); 
     }

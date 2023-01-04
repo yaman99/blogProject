@@ -3,9 +3,17 @@ import "../auth.css";
 import { initSignUpPage } from "../validation.js";
 import { AuthService } from "../../../shared/services/authService";
 import { NotificationService } from "../../../shared/services/NotificationService";
-import {validateSignUpForm} from "../validation"
+import { validateSignUpForm } from "../validation";
 //import validation
-initSignUpPage();
+// initSignUpPage();
+document.getElementById("signup_btn").addEventListener(
+  "click",
+  (e) => {
+    e.preventDefault();
+    signup();
+  },
+  true
+);
 
 let authService = new AuthService();
 let notification = new NotificationService();
