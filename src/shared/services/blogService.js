@@ -24,4 +24,12 @@ export class BlogService {
   getBlog(id) {
     return this.#dbContext.getData().find((x) => x.id === id);
   }
+
+  deleteBlog(id) {
+    return true;
+  }
+
+  updateBlog(payload) {
+    return true;
+  }
 }
