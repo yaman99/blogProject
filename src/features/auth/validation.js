@@ -1,8 +1,14 @@
+let emailErrors = [];
 export function validateSignUpForm() {
   const input = document.getElementById("email");
   const emailValue = input.value.trim();
-  const emailValidationResult = validateEmailInput(input, emailValue);
 
+  const emailValidationResult = validateEmailInput(emailValue);
+  if (emailValidationResult) {
+    setSuccessFor(input);
+  } else {
+    setErrorFor(input, emailErrors[0]);
+  }
   const password_input = document.getElementById("password");
   const passwordValue = password_input.value.trim();
   const passwordValidationResult = validatePasswordInput(
@@ -20,7 +26,7 @@ export function validateSignUpForm() {
 
   const username_input = document.getElementById("fullName");
   const usernameValue = username_input.value.trim();
-  const fullNameValidationResult=validateFullNameInput(username_input, usernameValue);
+  const fullNameValidationResult = validateFullNameInput(username_input, usernameValue);
 
   if (
     emailValidationResult &&
@@ -37,7 +43,7 @@ export function validateSignInForm() {
   const input = document.getElementById("email");
   const emailValue = input.value.trim();
   const emailValidationResult = validateEmailInput(input, emailValue);
-  
+
   const password_input = document.getElementById("password");
   const passwordValue = password_input.value.trim();
   const passwordvalidationResult = validatePasswordInput(
@@ -61,19 +67,18 @@ function setSuccessFor(input) {
   formControl.className = "form-control success";
 }
 
-function isEmail(email) {
+export function isEmail(email) {
   return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
     email
   );
 }
-function validateEmailInput(input, emailValue) {
+export function validateEmailInput(emailValue) {
   let state = false;
   if (emailValue === "") {
-    setErrorFor(input, "Email cannot be blank");
+    emailErrors.push("Email cannot be blank");
   } else if (!isEmail(emailValue)) {
-    setErrorFor(input, "Not a valid email");
+    emailErrors.push("Not a valid email");
   } else {
-    setSuccessFor(input);
     state = true;
   }
   return state;
@@ -82,9 +87,9 @@ function validatePasswordInput(input, value) {
   let state = false;
   if (value === "") {
     setErrorFor(input, "Password cannot be blank");
-  }else if(value.length<8) {
-    setErrorFor(input,"your Password should be more than 8 character");
-  }else {
+  } else if (value.length < 8) {
+    setErrorFor(input, "your Password should be more than 8 character");
+  } else {
     setSuccessFor(input);
     state = true;
   }
