@@ -1,4 +1,4 @@
-import {v4} from "uuid";
+import { v4 } from "uuid";
 import DbService from "./dbService";
 
 export class BlogService {
@@ -25,7 +25,6 @@ export class BlogService {
     } else {
       return [];
     }
-
   }
 
   getBlog(id) {
@@ -33,11 +32,30 @@ export class BlogService {
   }
 
   deleteBlog(id) {
+    let blogs = this.#dbContext.getData();
+    for (var i = 0; i < blogs.length; i++) {
+      if (blogs[i].id == id) {
+        blogs.splice(i, 1);
+        break;
+      }
+    }
+    blogs.filter((x) => x.id === id);
+    this.#dbContext.saveChanges(blogs);
     return true;
   }
 
-  updateBlog(payload) {
-    payload["id"] = this.getBlog(payload["id"]);
+  updateBlog(id, payload) {
+    let blogs = this.getAll();
+    for (let i = 0; i < blogs.length; i++) {
+      let blog = blogs[i];
+      if (blog.id === id) {
+        blog.title = payload.title;
+        blog.content = payload.content;
+        blog.authorName = payload.authorName;
+        break;
+      }
+    }
+    this.#dbContext.saveChanges(blogs);
     return true;
   }
 }
