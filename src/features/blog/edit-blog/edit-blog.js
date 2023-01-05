@@ -9,19 +9,17 @@ const authorNameInput = document.getElementById("authorName");
 
 
 let blogService = new BlogService(); 
-let blogId = null; 
-
+let blogId = localStorage.getItem("blogId");
+const blogDate = blogService.getBlog(blogId);
+intilizeForm(blogDate);
 
 //  get id from the href
-function intilizeForm() {
-    // todo : get id from the url 
-    const formData = blogService.getBlog(id);
-    titleInput.value = formData["title"]; 
-    contentInput.value = formData["content"];
-    authorNameInput.value = formData["authorName"]; 
+function intilizeForm(blogDate) {
+    titleInput.value = blogDate["title"];
+    contentInput.value = blogDate["content"];
+    authorNameInput.value = blogDate["authorName"];
 }
 
-intilizeForm(); 
 
 form.addEventListener("submit", validate);
 

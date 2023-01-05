@@ -1,11 +1,13 @@
-import { v4 } from "uuid";
+import {v4} from "uuid";
 import DbService from "./dbService";
 
 export class BlogService {
   #dbContext;
+
   constructor() {
     this.#dbContext = new DbService("Blog");
   }
+
   addBlog(payload) {
     let blogs = this.#dbContext.getData() ?? [];
     payload = {
@@ -18,7 +20,12 @@ export class BlogService {
   }
 
   getAll() {
-    return this.#dbContext.getData();
+    if (this.#dbContext.getData()) {
+      return this.#dbContext.getData();
+    } else {
+      return [];
+    }
+
   }
 
   getBlog(id) {
@@ -30,6 +37,7 @@ export class BlogService {
   }
 
   updateBlog(payload) {
+    payload["id"] = this.getBlog(payload["id"]);
     return true;
   }
 }
