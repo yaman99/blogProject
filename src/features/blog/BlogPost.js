@@ -30,7 +30,7 @@ export default function createBlog(formData) {
 
   const editButton = document.createElement("a");
   editButton.href = `./edit-blog.html`;
-  editButton.className = "btn btn-success m-2 col-md-2";
+  editButton.className = "btn btn-success editBtn m-2 col-md-2";
   editButton.innerText = "Edit Blog";
 
   editButton.addEventListener("click", () => {
@@ -43,7 +43,6 @@ export default function createBlog(formData) {
 
   manageBlog.appendChild(deleteButton);
 
-  // todo : add the deleteBlog service
   deleteButton.addEventListener("click", () => {
     deleteBlog(formData["id"]);
   });
